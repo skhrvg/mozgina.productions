@@ -8,6 +8,7 @@ import type { Props as HeroProps } from '@/components/HeroSection.vue'
 import type { Props as PortfolioProps } from '@/components/PortfolioSection.vue'
 import type { Props as ContactProps } from '@/components/ContactSection.vue'
 import ContactSection from '@/components/ContactSection.vue'
+import TheCursor from '@/components/TheCursor.vue'
 
 const heroProps: HeroProps = {
   photo: profilePhoto,
@@ -72,8 +73,5 @@ const contactProps: ContactProps = {
   <HeroSection v-bind="heroProps" />
   <PortfolioSection v-bind="portfolioProps" />
   <ContactSection v-bind="contactProps" />
+  <TheCursor />
 </template>
-
-<style scoped>
-
-</style>
