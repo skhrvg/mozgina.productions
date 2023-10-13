@@ -2,7 +2,8 @@
 import { Carousel, Navigation, Slide } from 'vue3-carousel'
 import 'vue3-carousel/dist/carousel.css'
 import '@/assets/carousel.css'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
+import exifr from 'exifr'
 import useTailwindBreakpoints from '@/functions/useTailwindBreakponts'
 
 export interface CarouselSection {
@@ -16,7 +17,7 @@ export interface Props {
   carouselSections: CarouselSection[]
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 
 const { isMobile, isTablet } = useTailwindBreakpoints()
 const itemsInCarousel = computed(() =>
@@ -26,6 +27,17 @@ const itemsInCarousel = computed(() =>
       ? 2.6
       : 3.95,
 )
+
+const copyrights = ref<Record<string, string>>({})
+
+for (const section of props.carouselSections) {
+  for (let i = 1; i <= section.itemsCount; i++) {
+    const path = `${section.path}/${i}.${section.extension}`
+    exifr.parse(path).then((data: any) => {
+      copyrights.value[path] = data.Copyright || 'Не защищено авторским правом'
+    })
+  }
+}
 </script>
 
 <template>
@@ -51,10 +63,15 @@ const itemsInCarousel = computed(() =>
           :key="`${section.path}/${slide}`"
           class=""
         >
-          <img
-            :src="`${section.path}/${slide}.${section.extension}`"
-            class="w-[40vw] sm:w-[30vw] md:w-[20vw] aspect-[3/5] md:aspect-[3/4] object-cover object-center"
-          >
+          <div class="relative overflow-hidden w-[40vw] sm:w-[30vw] md:w-[20vw] aspect-[3/5] md:aspect-[3/4] ">
+            <img
+              :src="`${section.path}/${slide}.${section.extension}`"
+              class="object-cover object-center w-full h-full"
+            >
+            <p class="copyright">
+              {{ copyrights[`${section.path}/${slide}.${section.extension}`] }}
+            </p>
+          </div>
         </Slide>
         <template #addons>
           <Navigation />
@@ -65,5 +82,9 @@ const itemsInCarousel = computed(() =>
 </template>
 
 <style scoped lang='postcss'>
-
+.copyright {
+  @apply absolute bottom-0 right-0 bg-gray-900/10 text-[0.3rem] p-0.5 text-white/50 font-medium;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
 </style>
