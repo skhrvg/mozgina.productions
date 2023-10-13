@@ -1,0 +1,28 @@
+.carousel__slide--sliding {
+    transition: 0.3s;
+}
+
+.carousel__slide {
+    opacity: 0.9;
+    transform: scale(0.9);
+}
+
+.carousel__slide--prev {
+    opacity: 1;
+    transform: scale(0.95);
+}
+
+.carousel__slide--next {
+    opacity: 1;
+    transform: scale(0.95);
+}
+
+.carousel__slide--active {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.carousel__next,
+.carousel__prev {
+    @apply bg-gray-50 rounded-full p-1.5 w-12 h-12 hidden sm:block;
+}
