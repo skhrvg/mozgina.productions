@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import profilePhoto from '@/assets/profile.jpeg?url'
+import profilePhoto from '@/assets/profile.jpg?url'
 import InstagramIcon from '@/components/icons/InstagramIcon.vue'
 import TelegramIcon from '@/components/icons/TelegramIcon.vue'
 import HeroSection from '@/components/HeroSection.vue'
@@ -12,7 +12,7 @@ import ContactSection from '@/components/ContactSection.vue'
 const heroProps: HeroProps = {
   photo: profilePhoto,
   header: 'MOZGINA\nPRODUCTIONS',
-  description: 'Продюсирование фото|видео съёмок в Москве и Петербурге,\nконсультация брендов',
+  description: 'Продюсирование фото | видео съёмок в Москве и Петербурге,\nконсультация брендов',
   socialLinks: [
     {
       icon: InstagramIcon,
