@@ -42,7 +42,7 @@ const portfolioProps: PortfolioProps = {
     {
       header: 'Имидж',
       path: '/portfolio/image',
-      itemsCount: 10,
+      itemsCount: 9,
       extension: 'jpg',
     },
     {
