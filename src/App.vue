@@ -9,9 +9,11 @@ import type { Props as PortfolioProps } from '@/components/PortfolioSection.vue'
 import type { Props as ContactProps } from '@/components/ContactSection.vue'
 import ContactSection from '@/components/ContactSection.vue'
 import TheCursor from '@/components/TheCursor.vue'
+import profileSfx from '@/assets/profile-sfx.mp3'
 
 const heroProps: HeroProps = {
   photo: profilePhoto,
+  sfx: profileSfx,
   header: 'MOZGINA\nPRODUCTIONS',
   description: 'Продюсирование фото | видео съёмок в Москве и Петербурге,\nконсультация брендов',
   socialLinks: [
